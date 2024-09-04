@@ -1,0 +1,23 @@
+Explicación del Código
+Configuración de Archivos:
+
+Define constantes para los nombres de los archivos y el directorio de ventas.
+Métodos para Crear Archivos:
+
+createProductsFile(int productsCount): Genera un archivo de productos con un número definido de productos.
+createSalesManInfoFile(int salesmanCount): Genera un archivo con información de vendedores.
+createSalesMenFile(int randomSalesCount, String name, long id): Genera archivos de ventas para un vendedor específico.
+Método main:
+
+Llama a los métodos anteriores para generar los archivos.
+Maneja excepciones de I/O y muestra mensajes de éxito o error.
+4. Ejecución y Pruebas
+Compila y ejecuta la clase GenerateInfoFiles en Eclipse.
+
+Asegúrate de que los archivos se creen correctamente en el directorio especificado.
+Verifica la Salida:
+
+Revisa que los archivos products.txt, salesmen.txt y los archivos de ventas de los vendedores se generen correctamente y contengan datos válidos.
+Ajustes:
+
+Puedes ajustar el número de productos y vendedores generados según tus necesidades.
