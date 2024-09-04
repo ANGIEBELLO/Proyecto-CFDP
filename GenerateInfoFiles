@@ -1,0 +1,53 @@
+package com.salesreport;
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Random;
+
+public class GenerateInfoFiles {
+
+    private static final String SALES_DIR = "sales_data/";
+    private static final String PRODUCTS_FILE = "products.txt";
+    private static final String SALESMEN_FILE = "salesmen.txt";
+    private static final Random RANDOM = new Random();
+
+    public static void main(String[] args) {
+        try {
+            createProductsFile(5); // Ajusta el número de productos
+            createSalesManInfoFile(3); // Ajusta el número de vendedores
+            createSalesMenFile(10, "John Doe", 123456); // Ejemplo de archivo de ventas
+            System.out.println("Archivos generados exitosamente.");
+        } catch (IOException e) {
+            System.err.println("Error al generar los archivos: " + e.getMessage());
+        }
+    }
+
+    public static void createProductsFile(int productsCount) throws IOException {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(PRODUCTS_FILE))) {
+            for (int i = 1; i <= productsCount; i++) {
+                writer.write(i + ";Producto" + i + ";" + (RANDOM.nextInt(100) + 1) + "\n");
+            }
+        }
+    }
+
+    public static void createSalesManInfoFile(int salesmanCount) throws IOException {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(SALESMEN_FILE))) {
+            for (int i = 1; i <= salesmanCount; i++) {
+                writer.write("DNI;" + (100000 + i) + ";Nombre" + i + ";Apellido" + i + "\n");
+            }
+        }
+    }
+
+    public static void createSalesMenFile(int randomSalesCount, String name, long id) throws IOException {
+        String fileName = SALES_DIR + name.replace(" ", "_") + "_" + id + ".txt";
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
+            writer.write("DNI;" + id + "\n");
+            for (int i = 1; i <= randomSalesCount; i++) {
+                int productId = RANDOM.nextInt(5) + 1; // Ajusta el rango según los productos generados
+                int quantity = RANDOM.nextInt(10) + 1;
+                writer.write(productId + ";" + quantity + ";\n");
+            }
+        }
+    }
+}
